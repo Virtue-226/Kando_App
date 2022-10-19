@@ -19,13 +19,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController passwordTextEditingController = TextEditingController();
 
   validateForm() {
-    if (nameTextEditingController.text.length < 3) {
+    if (nameTextEditingController.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Name is required");
+    } else if (nameTextEditingController.text.length < 3) {
       Fluttertoast.showToast(msg: "Name must be at least 3 characters");
+    } else if (emailTextEditingController.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Email address is required");
     } else if (!emailTextEditingController.text.contains("@")) {
       Fluttertoast.showToast(msg: "Email address is not valid");
     } else if (phoneTextEditingController.text.isEmpty) {
       Fluttertoast.showToast(msg: "Phone number is required");
-    } else if (passwordTextEditingController.text.length < 6) {
+    }
+    else if (passwordTextEditingController.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Password is required");
+    }
+
+    else if (passwordTextEditingController.text.length < 6) {
       Fluttertoast.showToast(msg: "Password must be at least 6 characters");
     } else {
       saveDriverInfo();
